@@ -363,17 +363,15 @@ class NeuralNetwork:
         return np.mean(pred_classes == true_classes)
 
     @staticmethod
-    def hyperparameter_search(X_train, y_train, X_val, y_val, param_grid):
+    def hyperparameter_search(X_train, y_train, X_val, y_val, param_grid,input_layers_config, output_layers_config):
         best_accuracy = 0
         best_params = None
         
         for params in param_grid:
             print(f"Testing configuration: {params}")
-            model = NeuralNetwork(
-                input_size=params['input_size'], 
-                input_layers_config=input_layers_config, 
-                output_layers_config=output_layers_config
-            )
+            model = NeuralNetwork()
+            model.addnetwork(input_size=params['input_size'], input_layers_config=input_layers_config, output_layers_config=output_layers_config)
+
             
             model.train(
                 X_train, y_train, X_val, y_val,
@@ -382,7 +380,7 @@ class NeuralNetwork:
             )
             
             # Evaluate on validation set
-            val_pred = model.forward(X_val)
+            val_pred = model.feedforward(X_val)
             val_accuracy = model.calculate_accuracy(val_pred, y_val)
             
             print(f"Validation Accuracy: {val_accuracy:.4f}")
@@ -420,14 +418,24 @@ param_grid = [
 
 # Convert validation set to numpy arrays for easy handling with the NeuralNetwork class
 # Using DataLoader for batch processing if needed
-#val_loader = DataLoader(new_validation_dataset, batch_size=len(new_validation_dataset))
-#X_val, y_val = next(iter(val_loader))  # Get entire validation set in one batch
-#X_val = X_val.view(len(X_val), -1).numpy()  # Flatten and convert to numpy array
-#y_val = torch.nn.functional.one_hot(y_val, num_classes=10).numpy()  # One-hot encode labels
+val_loader = DataLoader(new_validation_dataset, batch_size=len(new_validation_dataset))
+X_val, y_val = next(iter(val_loader))  # Get entire validation set in one batch
+X_val = X_val.view(len(X_val), -1).numpy()  # Flatten and convert to numpy array
+y_val = torch.nn.functional.one_hot(y_val, num_classes=10).numpy()  # One-hot encode labels
 
-#best_params, best_accuracy = NeuralNetwork.hyperparameter_search(new_train_dataset, new_test_dataset, X_val, y_val, param_grid)
-#print(f"Best hyperparameters: {best_params}")
-#print(f"Best validation accuracy: {best_accuracy:.4f}")
+# Define parameter grid for hyperparameter search
+param_grid = [
+    {'input_size': X_val.shape[1], 'epochs': 10, 'learning_rate': 0.01},
+    {'input_size': X_val.shape[1], 'epochs': 20, 'learning_rate': 0.001},
+    {'input_size': X_val.shape[1], 'epochs': 30, 'learning_rate': 0.005}
+]
+
+# Perform hyperparameter search
+best_params, best_accuracy = NeuralNetwork.hyperparameter_search(new_train_dataset, new_test_dataset, X_val, y_val, param_grid, input_layers_config, output_layers_config)
+
+print(f"Best hyperparameters: {best_params}")
+print(f"Best validation accuracy: {best_accuracy:.4f}")
+
 
 #Initialize the neural network with flexible layer configuration
 nn_network = NeuralNetwork()
