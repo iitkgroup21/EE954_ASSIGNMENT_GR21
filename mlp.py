@@ -12,7 +12,7 @@ dataset_location = root = './data/'
 training_dataset = datasets.FashionMNIST(dataset_location,
                                train=True,
                                transform=transforms.ToTensor(),
-                               download=True)
+                                 download=True)
 
 test_dataset = datasets.FashionMNIST(dataset_location,
                               train=False,
@@ -404,7 +404,7 @@ dummy_cnn_output = torch.randn(32, 200)  # (batch_size, num_features)
 print("Dummy CNN output shape:", dummy_cnn_output.shape)
 
 #Initialize the neural network with flexible layer configuration
-network = NeuralNetwork(input_size=200, input_layers_config=input_layers_config, output_layers_config=output_layers_config)
+#network = NeuralNetwork(input_size=200, input_layers_config=input_layers_config, output_layers_config=output_layers_config)
 
 #output = network.feedforward(dummy_cnn_output)
 #print(output)
@@ -420,13 +420,27 @@ param_grid = [
 
 # Convert validation set to numpy arrays for easy handling with the NeuralNetwork class
 # Using DataLoader for batch processing if needed
-val_loader = DataLoader(new_validation_dataset, batch_size=len(new_validation_dataset))
-X_val, y_val = next(iter(val_loader))  # Get entire validation set in one batch
-X_val = X_val.view(len(X_val), -1).numpy()  # Flatten and convert to numpy array
-y_val = torch.nn.functional.one_hot(y_val, num_classes=10).numpy()  # One-hot encode labels
+#val_loader = DataLoader(new_validation_dataset, batch_size=len(new_validation_dataset))
+#X_val, y_val = next(iter(val_loader))  # Get entire validation set in one batch
+#X_val = X_val.view(len(X_val), -1).numpy()  # Flatten and convert to numpy array
+#y_val = torch.nn.functional.one_hot(y_val, num_classes=10).numpy()  # One-hot encode labels
 
-best_params, best_accuracy = NeuralNetwork.hyperparameter_search(new_train_dataset, new_test_dataset, X_val, y_val, param_grid)
-print(f"Best hyperparameters: {best_params}")
-print(f"Best validation accuracy: {best_accuracy:.4f}")
+#best_params, best_accuracy = NeuralNetwork.hyperparameter_search(new_train_dataset, new_test_dataset, X_val, y_val, param_grid)
+#print(f"Best hyperparameters: {best_params}")
+#print(f"Best validation accuracy: {best_accuracy:.4f}")
+
+#Initialize the neural network with flexible layer configuration
+nn_network = NeuralNetwork()
+cnn_output_np = cnn_output.detach().numpy()
+cnn_output_np=nn_network.flatten(cnn_output_np)  # Flatten the CNN output
+nn_network.addnetwork(input_size=cnn_output_np.shape[1], input_layers_config=input_layers_config, output_layers_config=output_layers_config)
+
+output = nn_network.feedforward(cnn_output_np)
+
+# Retrieve and display the parameter DataFrame
+df = nn_network.display_parameters()
+print("Parameter Table for Neural Network:")
+print(df)
+#add the code for hyperparameter_search
 
 
