@@ -65,7 +65,7 @@ The performance of the model is evaluated in terms of accuracy on the test set.
 To run this project, you need to have Python and the following packages installed:
 
 ```bash
-pip install numpy matplotlib pandas torch torchvision wandb
+pip install numpy matplotlib pandas torch torchvision torchsummary scikit-learn torch.utils.data
 ```
 
 ### Running the Code
@@ -76,7 +76,7 @@ cd EE954_ASSIGNMENT_GR21
 ```
 2. Run the Jupyter notebook:
 ```bash
-jupyter notebook MLP.ipynb
+jupyter notebook Group21_FashionMNIST.ipynb
 ```
 
 ## Dependencies
@@ -86,7 +86,9 @@ jupyter notebook MLP.ipynb
 - Pandas
 - PyTorch
 - Torchvision
-- Weights & Biases
+- Toch
+- Torchsummary
+- SKlearn
 
 To run the notebook via Google Colab without installing anything locally, follow these steps:
 
