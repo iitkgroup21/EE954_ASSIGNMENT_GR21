@@ -90,10 +90,10 @@ jupyter notebook MLP.ipynb
 
 To run the notebook via Google Colab without installing anything locally, follow these steps:
 
-1. Open the notebook in GitHub: [MLP.ipynb](https://github.com/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/MLP.ipynb)
+1. Open the notebook in GitHub: [Group21_FashionMNIST.ipynb](https://github.com/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/Group21_FashionMNIST.ipynb)
 2. Click on the "Open in Colab" badge at the top of the notebook: 
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/MLP.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/Group21_FashionMNIST.ipynb)
 
 3. This will open the notebook in Google Colab, where you can run all the cells in the notebook without needing to install any dependencies locally.
 
