@@ -61,14 +61,26 @@ The training procedure involves:
 The performance of the model is evaluated in terms of accuracy on the test set.
 
 ## Usage Instructions
+### Running the Code
+### Preferred Approach
+To run the notebook via Google Colab without installing anything locally, follow these steps:
+
+1. Open the notebook in GitHub: [Group21_FashionMNIST.ipynb](https://github.com/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/Group21_FashionMNIST.ipynb)
+2. Click on the "Open in Colab" badge at the top of the notebook: 
+
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/Group21_FashionMNIST.ipynb)
+
+3. This will open the notebook in Google Colab, where you can run all the cells in the notebook without needing to install any dependencies locally.
+
+### Alternative Approach
+
 ### Installation
 To run this project, you need to have Python and the following packages installed:
 
 ```bash
-pip install numpy matplotlib pandas torch torchvision wandb
+pip install numpy matplotlib pandas torch torchvision torchsummary scikit-learn
 ```
 
-### Running the Code
 1. Clone this repository:
 ```bash
 git clone https://github.com/iitkgroup21/EE954_ASSIGNMENT_GR21.git
@@ -76,7 +88,7 @@ cd EE954_ASSIGNMENT_GR21
 ```
 2. Run the Jupyter notebook:
 ```bash
-jupyter notebook MLP.ipynb
+jupyter notebook Group21_FashionMNIST.ipynb
 ```
 
 ## Dependencies
@@ -86,16 +98,11 @@ jupyter notebook MLP.ipynb
 - Pandas
 - PyTorch
 - Torchvision
-- Weights & Biases
+- Toch
+- Torchsummary
+- scikit-learn
 
-To run the notebook via Google Colab without installing anything locally, follow these steps:
 
-1. Open the notebook in GitHub: [Group21_FashionMNIST.ipynb](https://github.com/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/Group21_FashionMNIST.ipynb)
-2. Click on the "Open in Colab" badge at the top of the notebook: 
-
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/iitkgroup21/EE954_ASSIGNMENT_GR21/blob/main/Group21_FashionMNIST.ipynb)
-
-3. This will open the notebook in Google Colab, where you can run all the cells in the notebook without needing to install any dependencies locally.
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
